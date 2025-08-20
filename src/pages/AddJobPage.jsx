@@ -27,7 +27,7 @@ const AddJobPage = ({ addNewJob }) => {
         name: companyName,
         description: companyDescription,
         contactEmail: companyEmail,
-        contactPhone:"+" + companyPhone,
+        contactPhone:"+963" + companyPhone,
       },
     };
     addNewJob(newJob);
@@ -65,7 +65,8 @@ const AddJobPage = ({ addNewJob }) => {
                 <option value="Part-Time">Part-Time</option>
                 <option value="Remote">Remote</option>
                 <option value="Internship">Internship</option>
-                <option value="custom">custom</option>
+                <option value="Custom">Custom </option>
+              
               </select>
             </div>
 
@@ -128,7 +129,8 @@ const AddJobPage = ({ addNewJob }) => {
                 <option value="$150K - 175K">$150K - $175K</option>
                 <option value="$175K - 200K">$175K - $200K</option>
                 <option value="Over $200K">Over $200K</option>
-                <option value="Based On Experience">Based On Experience</option>
+                <option value="Based on Experience">Based on Experience</option>
+               
               </select>
             </div>
 
@@ -178,7 +180,7 @@ const AddJobPage = ({ addNewJob }) => {
               <textarea
                 id="company_description"
                 name="company_description"
-                className="border rounded w-full py-2 px-3"
+                className="border rounded w-full py-2 px-3 max-h-[200px] overflow-auto"
                 rows="4"
                 placeholder="What does your company do?"
                 value={companyDescription}
@@ -203,6 +205,11 @@ const AddJobPage = ({ addNewJob }) => {
                 value={companyEmail}
                 onChange={(e) => setCompanyEmail(e.target.value)}
               />
+              
+              {!companyEmail.endsWith('.com') && !companyEmail.endsWith('.net') && companyEmail.length > 0
+               && (<p className="text-red-500 text-sm mt-1">Email must end with .com or .net</p>
+)}
+
             </div>
             <div className="mb-4">
               <label
