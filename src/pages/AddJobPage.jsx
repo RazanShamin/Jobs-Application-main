@@ -38,6 +38,17 @@ const AddJobPage = ({ addNewJob }) => {
       // window.location.reload();
     }, 1000);
   };
+  const resetForm =()=>{
+    setType("Full Time");
+    setTitle("");
+    setLocation("");
+    setDescription("");
+    setSalary("Under $50K");
+    setCompanyName("");
+    setCompanyDescription("");
+    setCompanyEmail("");
+    setCompanyPhone("");
+  }
 
   return (
     <section className="bg-red-50">
@@ -239,6 +250,13 @@ const AddJobPage = ({ addNewJob }) => {
               >
                 Add Job
               </button>
+            </div>
+            <div>
+             <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6"
+             type="button"  
+             onClick={resetForm}>
+              Clear Form 
+              </button> 
             </div>
           </form>
         </div>
