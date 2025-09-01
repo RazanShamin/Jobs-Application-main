@@ -48,7 +48,8 @@ console.log("valid?",valid );
         placeholder="enter your Email address  "   
         className="border rounded w-full py-2 px-3"
         value={email}
-        onChange={(e)=>{setEmail(e.target.value)}}/>
+        onChange={(e)=>{setEmail(e.target.value)}}
+        />
 
         
         {(!email.includes('.') || !email.includes('@')) && email.length > 0 && (
