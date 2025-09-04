@@ -1,92 +1,86 @@
 import React from "react"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
+import {toast} from "react-toastify"
+
 const SignInPage =()=>{
-  const [email,setEmail]=useState('')
-  const [password,setPassword]=useState('')
-  const [showPassword, setShowPassword] = useState(false);
   
-  const navigate = useNavigate();
+ const {register,handleSubmit ,formState: { errors }}=useForm();
+ const navigate= useNavigate();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-console.log("Submit clicked")
+ const onSubmit = (data) => {
+  toast.success("Done succesfully");
 
-    let valid = true;
-    if (email.length==0 || !email.includes('.') || !email.includes('@'))   {
-      console.log("Invalid email");
-      valid = false;
-    }
-
-    if (password.length < 10 ) {
-      console.log("Invalid password");
-      valid = false;
-    }
-console.log("valid?",valid );
-    if (valid) {
-      console.log("Navigating to home...");
-      navigate("/");
-    }
+  return setTimeout(() => {
+    navigate("/");
     
-  };
+  }, 1000);
+};
+
 
  
   
 
     return(
-      <div  className="container m-auto max-w-2xl py-24 ">
+      <div className="container m-auto max-w-2xl py-24">
+        <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <h2 className="text-3xl text-center font-semibold mb-6">
+            tis is sign In page
+            </h2>
 
-      <form   onSubmit={submitHandler}  className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">     
-       <h2 className="text-3xl text-center font-semibold mb-6">Sign in</h2>
+            {/* email */}
 
-        <div className="mb-4">
-        <label  className="block text-gray-700 font-bold mb-2">
-          Email address
-        </label>
-        <input
-        type='email'
-        placeholder="enter your Email address  "   
-        className="border rounded w-full py-2 px-3"
-        value={email}
-        onChange={(e)=>{setEmail(e.target.value)}}
-        />
+            <label className="block text-gray-700 font-bold mb-2 " >Email</label>
+            <input type="email" 
+            placeholder="enter your email"
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: "Invalid email ",
+              },
+            })}
+            className="border rounded w-full py-2 px-3"
+          
+            />
+      {errors.email&&(
+        <p className="text-red-500 text-sm mt-2">
+             {errors.email.message}
+          </p>
+            )} 
 
-        
-        {(!email.includes('.') || !email.includes('@')) && email.length > 0 && (
-    <p className="text-red-500 text-sm mt-1">
-        Email must include (.) and (@)
-    </p>
-)}
+            {/* password */}
 
-       </div>
+            <label className="block text-gray-700 font-bold mt-4 mb-2 " >Password</label>
+            <input type="password" 
+            placeholder="enter password"
+            {...register("password", {
+              required: "password is required",
+              minLength: {
+                value: 10,
+                message: "Password must be at least 10 characters",
+              },
+            })}
+            className="border rounded w-full py-2 px-3"/>
+            
+            {errors.password&&(
+           <p className="text-red-500 text-sm mt-2">
+           {errors.password.message}
+           </p>   
+            )}
 
-       <div className="mb-4">
-        <label className="block text-gray-700 font-bold mb-2" > Password</label>
-        <input 
-        type={showPassword? "text":"password"}
-        placeholder="enter Password"
-        className="border rounded w-full py-2 px-3"
-        value={password}
-        onChange={ (e)=>{setPassword(e.target.value)}}
-        onFocus={() => setShowPassword(true)}   
-        onBlur={() => setShowPassword(false)}    
+             <div>
+              <button type="submit" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6">
+                submit
+              </button>
+            </div>
+            
+            </form>
+            </div> 
+           
 
-      />
-       
-        { 
-          password.length>0 && password.length<10 &&(
-            <p className="text-red-500 text-sm mt-1">
-             password needs to be 10 characters at least 
-            </p>
-          ) 
-        }
-       </div>
-       <button type="submit"  className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6"
-       >
-        submit
-       </button>
-      </form> 
-       </div>
+      </div>
     )
 
     
