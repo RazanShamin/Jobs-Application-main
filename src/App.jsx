@@ -12,8 +12,10 @@ import JobsPage from "./pages/JobsPage.jsx";
 import EditJobPage from "./pages/EditJobPage.jsx";
 import JobPage, { jobLoader } from "./pages/JobPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
+
 import SignInPage from "./pages/SignInpage.jsx";
 import SignUpPage from "./pages/SignInpage.jsx";
+
 function App() {
   const addJob = async (newJob) => {
     const newJobUpload = await fetch(
@@ -62,7 +64,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/jobs/*" element={<NotFoundPage />} />
         <Route path="/signin" element={<SignInPage/>}/>
-        {/* <Route path="/signup" element ={<SignUpPage/>}/> */}
+        <Route path="/signup" element ={<SignUpPage/>}/>
       </Route>
     )
   );
