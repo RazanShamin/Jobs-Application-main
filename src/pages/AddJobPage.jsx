@@ -241,7 +241,13 @@ const AddJobPage = ({ addNewJob }) => {
               } }
               inputMode="numeric"
               />
-            </div>
+              
+            </div> 
+             <button className="text-sm text-red-500 hover:text-red-900 font-light focus:outline-none focus:ring-2 focus:ring-red-500 ml-auto block mb-3"
+             type="button"  
+             onClick={resetForm}>
+              Clear Form 
+              </button> 
 
             <div>
               <button
@@ -252,11 +258,7 @@ const AddJobPage = ({ addNewJob }) => {
               </button>
             </div>
             <div>
-             <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6"
-             type="button"  
-             onClick={resetForm}>
-              Clear Form 
-              </button> 
+           
             </div>
           </form>
         </div>
