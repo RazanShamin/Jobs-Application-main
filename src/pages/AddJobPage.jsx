@@ -243,7 +243,7 @@ const AddJobPage = ({ addNewJob }) => {
               />
               
             </div> 
-             <button className="text-sm text-red-500 hover:text-red-900 font-light focus:outline-none focus:ring-2 focus:ring-red-500 ml-auto block mb-3"
+             <button className="text-sm text-red-500 outline:none hover:text-red-900 font-light focus:outline-none focus:ring-2 focus:ring-red-500 ml-auto block mb-3"
              type="button"  
              onClick={resetForm}>
               Clear Form 
