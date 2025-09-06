@@ -13,7 +13,7 @@ import EditJobPage from "./pages/EditJobPage.jsx";
 import JobPage, { jobLoader } from "./pages/JobPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 
-import SignInPage from "./pages/SignInpage.jsx";
+import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 
 function App() {
