@@ -1,23 +1,34 @@
 import React from "react";
 import {useForm} from "react-hook-form"
 import { useNavigate } from "react-router-dom";
-const SignUpPage=()=>{
-    const{register,handleSubmit ,watch,formState:{errors}}=useForm()
+import {toast} from "react-toastify"
+const SignUpPage =()=>{
+    const{register,handleSubmit ,watch,formState:{errors,isValid}}=useForm({mode: "onChange"})
 
     const navigate =useNavigate();
     const onSubmit=(data)=>{
-      navigate('/')
+
+        toast.success("Done succesfully");
+     return setTimeout(() => {
+    navigate("/");
+    
+  }, 2000);
+    
     }
- 
+   
+
 
     
     return( 
     <div className="container m-auto max-w-2xl py-24">
     <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
         <form onSubmit={handleSubmit (onSubmit)}  >
-            {/* <h2 className="text-3xl text-center font-semibold mb-6">
-                this is  Sign Up page 
+
+             <h2 className="text-3xl text-center font-semibold mb-6">
+              Sign Up 
+              
             </h2>
+
             {/* email */}
             <label className="block text-gray-700 font-bold mb-2 ">Email</label>
             <input
@@ -38,7 +49,7 @@ const SignUpPage=()=>{
     {errors.signupemail.message}</p>)} 
 
              {/* username */}
-            <label className="block text-gray-700 font-bold mb-2 ">Username</label>
+            <label className="block text-gray-700 font-bold mb-2 mt-2">Username</label>
             <input
             type="text"
             placeholder="enter your user name "
@@ -57,7 +68,7 @@ const SignUpPage=()=>{
              {errors.username&& (<p className="text-red-500 text-sm mt-2 ">
               {  errors.username.message}</p>)}
              {/* password */}
-            <label className="block text-gray-700 font-bold mb-2 ">Password</label>
+            <label className="block text-gray-700 font-bold mb-2 mt-2">Password</label>
             <input
             type="password"
             placeholder="enter your password "
@@ -74,7 +85,7 @@ const SignUpPage=()=>{
              />
              {errors.password&& (<p className="text-red-500 text-sm mt-2 ">{errors.password.message}</p>)}
              {/* cofirmpassowrd */}
-            <label className="block text-gray-700 font-bold mb-2 ">Confirm password</label>
+            <label className="block text-gray-700 font-bold mb-2 mt-2 ">Confirm password</label>
             <input
             type="password"
             placeholder="check password "
@@ -82,7 +93,7 @@ const SignUpPage=()=>{
             {...register("confirmpassword" ,
             {required: "password is required",
            validate:(value)=>{
-            value === watch("password")|| "password does not match " 
+          return  value === watch("password")|| "password does not match " 
            }
                
         },
@@ -93,9 +104,14 @@ const SignUpPage=()=>{
              {errors.confirmpassword&& (<p className="text-red-500 text-sm mt-2 ">
                { errors.confirmpassword.message}</p>)}
             
-             <button type="submit" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6">
+             <button type="submit" 
+            disabled={!isValid }
+            className={`w-full py-2 px-4 mt-6 rounded text-white font-bold ${
+              !isValid  ? "bg-red-500 hover:bg-red-600 cursor-not-allowed"   :" bg-red-500 hover:bg-red-600 cursor-pointer "
+          }`}>
                 Confirm
              </button>
+             
 
         </form>
     </div>
@@ -105,4 +121,4 @@ const SignUpPage=()=>{
     </div>
     )
 }
-export default SignUpPage;
+export default SignUpPage ;

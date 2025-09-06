@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
 
+
 const SignInPage =()=>{
   
- const {register,handleSubmit ,formState: { errors }}=useForm();
+ const {register,handleSubmit ,formState: { errors,isValid }}=useForm({mode:"onChange"});
  const navigate= useNavigate();
 
  const onSubmit = (data) => {
@@ -14,7 +15,7 @@ const SignInPage =()=>{
   return setTimeout(() => {
     navigate("/");
     
-  }, 1000);
+  }, 2000);
 };
 
 
@@ -26,7 +27,7 @@ const SignInPage =()=>{
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h2 className="text-3xl text-center font-semibold mb-6">
-            tis is sign In page
+          sign In
             </h2>
 
             {/* email */}
@@ -70,11 +71,12 @@ const SignInPage =()=>{
            </p>   
             )}
 
-             <div>
-              <button type="submit" className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-6">
-                submit
-              </button>
-            </div>
+         <button type="submit" 
+            disabled={!isValid }
+            className={`w-full py-2 px-4 mt-6 rounded text-white font-bold ${
+              !isValid  ? "bg-red-500 hover:bg-red-600 cursor-not-allowed"   :" bg-red-500 hover:bg-red-600 cursor-pointer " }`}>
+                Confirm
+             </button>
             
             </form>
             </div> 

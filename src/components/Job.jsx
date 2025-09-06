@@ -9,25 +9,30 @@ const Job = ({ job }) => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-md relative">
-      <div className="p-4">
+    <div className="bg-white rounded-xl shadow-md flex flex-col justify-between h-full">
+      <div className="p-4 flex flex-col h-full">
         <div className="mb-6">
           <div className="text-gray-600 my-2">{job.type}</div>
           <h3 className="text-xl font-bold">{job.title}</h3>
         </div>
 
-        <div className="mb-5">{description}</div>
-        <button
-          className="text-red-500 mb-5 hover:text-red-600"
-          onClick={() => setShowAllDesc((prevState) => !prevState)}
-        >
-          {showAllDesc ? "Less" : "More"}
-        </button>
+        <div className="mb-4 ">
+          <p>
+           {showAllDesc ? job.description : `${job.description.substring(0, 80)}...`}
+           </p>
+            <button
+           className=" text-red-500 mt-2 hover:text-red-600 flex-grow"
+           onClick={() => setShowAllDesc((prev) => !prev)}
+         >
+              {showAllDesc ? "Less" : "More"}
+          </button>
+         </div>
+
         <h3 className="text-red-500 mb-2">{job.salary}</h3>
 
         <div className="border border-gray-100 mb-5"></div>
 
-        <div className="flex flex-col lg:flex-row justify-between mb-4">
+        <div  className="flex flex-col lg:flex-row justify-between items-start lg:items-center mt-auto">
           <div className="text-orange-700 mb-3">
             <FaMapMarker className="inline text-lg mb-1 mr-1" />
             {job.location}

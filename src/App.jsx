@@ -14,7 +14,7 @@ import JobPage, { jobLoader } from "./pages/JobPage";
 import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 import SignInPage from "./pages/SignInpage.jsx";
-import SignUpPage from "./pages/SignInpage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
 
 function App() {
   const addJob = async (newJob) => {
