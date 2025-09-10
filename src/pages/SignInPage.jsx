@@ -1,6 +1,6 @@
 import React from "react"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
 
 
@@ -10,7 +10,7 @@ const SignInPage =()=>{
  const navigate= useNavigate();
 
  const onSubmit = (data) => {
-  toast.success("Done succesfully");
+  toast.success("Signed in succesfully!");
 
   return setTimeout(() => {
     navigate("/");
@@ -27,16 +27,16 @@ const SignInPage =()=>{
         <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
           <form onSubmit={handleSubmit(onSubmit)}>
             <h2 className="text-3xl text-center font-semibold mb-6">
-          sign In
+          Sign In
             </h2>
 
             {/* email */}
 
             <label className="block text-gray-700 font-bold mb-2 " >Email</label>
             <input type="email" 
-            placeholder="enter your email"
+            placeholder="Enter your email"
             {...register("email", {
-              required: "Email is required",
+              required: "email is required",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                 message: "Invalid email ",
@@ -55,12 +55,12 @@ const SignInPage =()=>{
 
             <label className="block text-gray-700 font-bold mt-4 mb-2 " >Password</label>
             <input type="password" 
-            placeholder="enter password"
+            placeholder="Enter password"
             {...register("password", {
               required: "password is required",
               minLength: {
-                value: 10,
-                message: "Password must be at least 10 characters",
+                value: 8,
+                message: "Password must be at least 8 characters",
               },
             })}
             className="border rounded w-full py-2 px-3"/>
@@ -73,11 +73,13 @@ const SignInPage =()=>{
 
          <button type="submit" 
             disabled={!isValid }
-            className={`w-full py-2 px-4 mt-6 rounded text-white font-bold ${
-              !isValid  ? "bg-red-500 hover:bg-red-600 cursor-not-allowed"   :" bg-red-500 hover:bg-red-600 cursor-pointer " }`}>
-                Confirm
+            className={`w-full py-2 px-4 mt-6 rounded-full text-white font-bold ${
+              !isValid  ? "bg-red-500 hover:bg-red-400 cursor-pointer "   :" bg-red-500 hover:bg-red-600  cursor-pointer " }`}>
+               Sign In
              </button>
-            
+            <Link to="/signup" className="text-sm text-blue-400">
+            I don't have account !
+            </Link>
             </form>
             </div> 
            

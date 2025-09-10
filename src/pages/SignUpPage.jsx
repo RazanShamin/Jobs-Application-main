@@ -1,6 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form"
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
 const SignUpPage =()=>{
     const{register,handleSubmit ,watch,formState:{errors,isValid}}=useForm({mode: "onChange"})
@@ -8,10 +8,10 @@ const SignUpPage =()=>{
     const navigate =useNavigate();
     const onSubmit=(data)=>{
 
-        toast.success("Done succesfully");
+        toast.success("Account created succesfully");
      return setTimeout(() => {
     navigate("/");
-    
+       
   }, 2000);
     
     }
@@ -33,32 +33,32 @@ const SignUpPage =()=>{
             <label className="block text-gray-700 font-bold mb-2 ">Email</label>
             <input
             type="email"
-            placeholder="enter your email"
+            placeholder="Enter your email"
             className="border rounded w-full py-2 px-3"
             {...register("signupemail" ,{required: "email is required",
             pattern:{
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message:"email is invalid "
+                message:"Email is invalid "
 
             },
         })}
              
 
              />
-{errors.signupemail && (<p className="text-red-500 text-sm mt-2">
-    {errors.signupemail.message}</p>)} 
+           {errors.signupemail && (<p className="text-red-500 text-sm mt-2">
+                   {errors.signupemail.message}</p>)} 
 
              {/* username */}
             <label className="block text-gray-700 font-bold mb-2 mt-2">Username</label>
             <input
             type="text"
-            placeholder="enter your user name "
+            placeholder="Enter your user name "
             className="border rounded w-full py-2 px-3"
             {...register("username" ,
             {required: "username is required",
             minLength :{
                 value:4,
-                message:"username must be at least 4 characters"
+                message:"Username must be at least 4 characters"
 
             },
         })}
@@ -71,12 +71,12 @@ const SignUpPage =()=>{
             <label className="block text-gray-700 font-bold mb-2 mt-2">Password</label>
             <input
             type="password"
-            placeholder="enter your password "
+            placeholder="Enter your password "
             className="border rounded w-full py-2 px-3"
             {...register("password" ,{required: "password is required",
             minLength :{
-                value: 4 ,
-                message:"password must be at least 10 characters"
+                value: 8 ,
+                message:"Password must be at least 8 characters"
 
             },
         })}
@@ -88,12 +88,12 @@ const SignUpPage =()=>{
             <label className="block text-gray-700 font-bold mb-2 mt-2 ">Confirm password</label>
             <input
             type="password"
-            placeholder="check password "
+            placeholder="Check password "
             className="border rounded w-full py-2 px-3"
             {...register("confirmpassword" ,
             {required: "password is required",
            validate:(value)=>{
-          return  value === watch("password")|| "password does not match " 
+          return  value === watch("password")|| "Password does not match " 
            }
                
         },
@@ -106,13 +106,17 @@ const SignUpPage =()=>{
             
              <button type="submit" 
             disabled={!isValid }
-            className={`w-full py-2 px-4 mt-6 rounded text-white font-bold ${
-              !isValid  ? "bg-red-500 hover:bg-red-600 cursor-not-allowed"   :" bg-red-500 hover:bg-red-600 cursor-pointer "
+            className={`w-full py-2 px-4 mt-6 rounded-full text-white font-bold ${
+              !isValid  ? "bg-red-500 hover:bg-red-400 cursor-pointer "   :" bg-red-500 hover:bg-red-600 cursor-pointer "
           }`}>
-                Confirm
+              Singn Up
              </button>
-             
-
+          
+             <p className="text-sm text-blue-400 my-4">
+                Already have account?
+             </p>
+             <Link to ="/signin" className="text-sm text-blue-400"> Log in here</Link>>
+          
         </form>
     </div>
 

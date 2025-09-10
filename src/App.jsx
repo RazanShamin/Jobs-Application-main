@@ -16,6 +16,7 @@ import NotFoundPage from "./pages/NotFoundPage.jsx";
 import SignInPage from "./pages/SignInPage.jsx";
 import SignUpPage from "./pages/SignUpPage.jsx";
 
+
 function App() {
   const addJob = async (newJob) => {
     const newJobUpload = await fetch(
@@ -51,7 +52,9 @@ function App() {
   };
 
   const router = createBrowserRouter(
+
     createRoutesFromElements(
+      
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="/jobs" element={<JobsPage />} />
@@ -66,9 +69,10 @@ function App() {
         <Route path="/signin" element={<SignInPage/>}/>
         <Route path="/signup" element ={<SignUpPage/>}/>
       </Route>
-    )
+     )
   );
   return (
+    
     // <BrowserRouter>
     //   <Routes>
     //     <Route element={<MainLayout />}>
@@ -79,7 +83,12 @@ function App() {
     //     </Route>
     //   </Routes>
     // </BrowserRouter>
-    <RouterProvider router={router} />
+
+      <RouterProvider router={router} />
+   
+
+  
+
   );
 }
 

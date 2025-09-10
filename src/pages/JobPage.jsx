@@ -4,11 +4,17 @@ import { Link, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
 import Spinner from "../components/Spinner";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+
+
+
 
 const JobPage = ({ deleteJob }) => {
   const [job, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+  // const {company.contactEmail}= useParams();
+  // const {company.contactPhone}= useParams();
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -120,8 +126,7 @@ const JobPage = ({ deleteJob }) => {
                 </Link>
                 <button
                   className="bg-red-500 hover:bg-red text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                  onClick={() => confirmDeleteJob(job.id)}
-                >
+                  onClick={() => confirmDeleteJob(job.id)}>
                   Delete Job
                 </button>
               </div>
@@ -141,3 +146,7 @@ const jobLoader = async () => {
   return data;
 };
 export { JobPage as default, jobLoader };
+
+
+ 
+   
