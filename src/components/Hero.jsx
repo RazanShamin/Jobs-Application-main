@@ -15,7 +15,7 @@ const Hero = () => {
   // };
   const b =async()=>{
     try {
-      const res = await fetch("https://jobs-application-backend.vercel.app/api/hello");
+      const res = await fetch("https://jobs-application-backend.vercel.app/publicc/indeddx.html");
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }

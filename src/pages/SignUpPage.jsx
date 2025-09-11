@@ -112,10 +112,10 @@ const SignUpPage =()=>{
               Singn Up
              </button>
           
-             <p className="text-sm text-blue-400 my-4">
+             <p className="text-sm text-blue-400 my-4 ml-6">
                 Already have account?
              </p>
-             <Link to ="/signin" className="text-sm text-blue-400"> Log in here</Link>>
+             <Link to ="/signin" className="text-sm text-blue-400"> Log in here</Link>
           
         </form>
     </div>
