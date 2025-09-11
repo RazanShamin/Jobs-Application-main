@@ -34,13 +34,13 @@ const SignInPage =()=>{
    
     sessionStorage.setItem("token", result.token);
 
-    toast.success("Login completed");
+    toast.success("Signin completed");
     setTimeout(() => {
       navigate("/");
     }, 1000);
   } catch (err) {
-    console.error(" Signip error:", err.response?.data?.message || err.message);
-    toast.error("Signip failed");
+    console.error(" Signin error:", err.response?.data?.message || err.message);
+    toast.error("Signin failed");
   }
 };
 
