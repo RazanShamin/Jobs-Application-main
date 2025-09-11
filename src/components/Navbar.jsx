@@ -31,7 +31,7 @@ const Navbar = () => {
           <div   className="flex  ">
             <img src={logo} alt="Logo" className="h-10 w-auto" />
             <Link to ="/"   className="text-white text-2xl font-bold ml-4  md:block">
-              Razan Jobs
+            Joppy Finder
             </Link>
           </div> 
          </div>
