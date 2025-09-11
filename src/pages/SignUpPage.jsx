@@ -2,21 +2,47 @@ import React from "react";
 import {useForm} from "react-hook-form"
 import {Link, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
+import axios from "axios";
+
 const SignUpPage =()=>{
     const{register,handleSubmit ,watch,formState:{errors,isValid}}=useForm({mode: "onChange"})
 
     const navigate =useNavigate();
-    const onSubmit=(data)=>{
-
-        toast.success("Account created succesfully");
-     return setTimeout(() => {
-    navigate("/");
-       
-  }, 2000);
-    
-    }
-   
-
+    const onSubmit = async (data) => {
+        try {
+          const payload = {
+            name: data.username,
+            email: data.signupemail,
+            password: data.password,
+            user_type: data.userType,
+          };
+      
+          const response = await axios.post("https://jobs-application-backend.vercel.app/api/signup", payload, {
+            headers: { "Content-Type": "application/json" }
+          });
+          
+      
+          const result = response.data;
+      
+  
+          console.log(" User:", result.user);
+          console.log(" Token:", result.token);
+      
+         
+          sessionStorage.setItem("token", result.token);
+      
+          toast.success("Account created successfully");
+      
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        } catch (err) {
+          console.error(" Signup error:", err.response?.data?.message || err.message);
+          toast.error("Signup failed");
+        }
+      };
+      
+      
 
     
     return( 
@@ -103,6 +129,22 @@ const SignUpPage =()=>{
              />
              {errors.confirmpassword&& (<p className="text-red-500 text-sm mt-2 ">
                { errors.confirmpassword.message}</p>)}
+               <label
+                htmlFor="type"
+                className="block my-2 text-gray-700 font-bold mb-2"
+              >
+                User type
+              </label>
+              <select
+             id="type"
+           className="border rounded w-full py-2 px-3"
+           {...register("userType", { required: "Please select a user type" })}
+                 >
+        
+          <option value="candidate">Candidate</option>
+          <option value="company">Company</option>
+            </select>
+          
             
              <button type="submit" 
             disabled={!isValid }

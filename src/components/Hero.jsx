@@ -6,7 +6,7 @@ const Hero = () => {
   const[responseMessage,setResponseMessage]=useState("");
   // const b =async()=>{
   //   try {
-  //     const res = await axios.get("https://jobs-application-backend.vercel.app/api/hello");
+  //     const res = await axios.get("https://jobs-application-backend.vercel.app");
   //     setResponseMessage(res.data.message);
   //   } catch (err) {
   //     console.error("Error fetching data:", err);
@@ -15,7 +15,7 @@ const Hero = () => {
   // };
   const b =async()=>{
     try {
-      const res = await fetch("https://jobs-application-backend.vercel.app/publicc/indeddx.html");
+      const res = await fetch("https://jobs-application-backend.vercel.app");
       if (!res.ok) {
         throw new Error("Network response was not ok");
       }

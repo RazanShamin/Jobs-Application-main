@@ -2,6 +2,8 @@ import React from "react"
 import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify"
+import axios from "axios";
+
 
 
 const SignInPage =()=>{
@@ -9,17 +11,40 @@ const SignInPage =()=>{
  const {register,handleSubmit ,formState: { errors,isValid }}=useForm({mode:"onChange"});
  const navigate= useNavigate();
 
- const onSubmit = (data) => {
-  toast.success("Signed in succesfully!");
+ const onSubmit = async (data) => {
+  try {
+    const payload = {
+      
+      email: data.email,
+      password: data.password,
+     
+    };
 
-  return setTimeout(() => {
-    navigate("/");
+    const response = await axios.post("https://jobs-application-backend.vercel.app/api/signin", payload, {
+      headers: { "Content-Type": "application/json" }
+    });
     
-  }, 2000);
+
+    const result = response.data;
+
+
+    console.log(" User:", result.user);
+    console.log(" Token:", result.token);
+
+   
+    sessionStorage.setItem("token", result.token);
+
+    toast.success("Login completed");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
+  } catch (err) {
+    console.error(" Signip error:", err.response?.data?.message || err.message);
+    toast.error("Signip failed");
+  }
 };
 
 
- 
   
 
     return(
